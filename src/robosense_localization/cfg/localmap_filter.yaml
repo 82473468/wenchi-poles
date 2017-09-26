@@ -1,0 +1,21 @@
+# - CutAtDescriptorThresholdDataPointsFilter:
+#     descName: probabilityStatic
+#     useLargerThan: 0
+#     threshold: 0.2
+- RemoveNaNDataPointsFilter:
+- RandomSamplingDataPointsFilter:
+    prob: 0.8
+# - MaxPointCountDataPointsFilter:
+    # maxCount: 10000
+- SamplingSurfaceNormalDataPointsFilter:
+    ratio: 0.8
+    knn: 12
+    samplingMethod: 1
+    maxBoxDim: 4.0
+    averageExistingDescriptors: 0
+    keepNormals: 1
+    keepDensities: 0
+    keepEigenValues: 0
+    keepEigenVectors: 0
+    # keepMatchedIds: 0
+

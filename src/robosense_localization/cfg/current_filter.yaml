@@ -1,0 +1,30 @@
+
+- RemoveNaNDataPointsFilter:
+- RandomSamplingDataPointsFilter:
+    prob: 0.8
+- SamplingSurfaceNormalDataPointsFilter:
+    ratio: 1.0 
+    knn: 4 
+    samplingMethod: 1
+    maxBoxDim: 2.0 
+    averageExistingDescriptors: 0
+    keepNormals: 1
+    keepDensities: 0
+    keepEigenValues: 0
+    keepEigenVectors: 0
+    # keepMatchedIds: 0
+# - FixStepSamplingDataPointsFilter:
+#     startStep: 8
+#- RandomSamplingDataPointsFilter:
+#    prob: 0.2
+# - SurfaceNormalDataPointsFilter:
+#     knn: 15
+#     epsilon: 1.33
+#     keepNormals: 1
+#     keepDensities: 1
+# - MaxDensityDataPointsFilter:
+#     maxDensity: 50.0
+# - SimpleSensorNoiseDataPointsFilter:
+#     sensorType: 0
+# - ObservationDirectionDataPointsFilter
+# - OrientNormalsDataPointsFilter 

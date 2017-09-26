@@ -1,0 +1,88 @@
+<launch>
+
+
+    <!-- Rviz -->
+    <arg name="rviz" default="true" />
+
+
+
+    <!-- ==================================================================  -->
+  <!-- rslidar raw packets node -->
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/-->
+    <!--param name="device_ip" value="192.168.1.200"/-->
+    <!-- Set the Lidar data port on the PC side, default is 6699 -->
+    <param name="port" value="6699"/>
+  </node>
+  
+  <!--  rslidar pointcloud parse node -->
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="curves_path" value="/data/LM219/curves.csv"/>
+    <param name="angle_path" value="/data/LM219/angle.csv"/>
+    <param name="channel_path" value="/data/LM219/ChannelNum.csv"/>
+  </node>
+  
+
+
+  <!-- ==================================================================  -->
+    <!-- gps data record node -->
+    <node name="gps" pkg="sensors" type="findm"   >
+    <param name="port" value="/dev/ttyUSBGps" />
+    <param name="baud" value="115200" />
+    <param name="appkey" value="510328" />
+    <param name="appSecret" value="a9a55c74fa8797e5ba9ca482d83311b9a6341ab99996050345ad43a480bfded9" />
+    <param name="deviceType"   value="GPS" />
+  </node>
+  
+  
+  <!-- nav440 imu data record node -->
+  <node  name="nav440" pkg="sensors" type="nav440"  >
+    <param name="port" value="/dev/ttyUSBNav" />
+    <param name="baud" value="38400" />
+  </node>
+   
+  <!-- obd data record -->
+  <!--node  name="canbus" pkg="sensors" type="canbus"  -->
+    <!--param name="port" value="/dev/ttyUSBEncoder" /-->
+    <!--param name="baud" value="38400" /-->
+  <!--/node-->
+  
+  <!-- wheel encoder data record -->
+  <node  name="encoder" pkg="sensors" type="encoder"  >
+    <param name="port" value="/dev/ttyUSBEncoder" />
+    <param name="baud" value="115200" />
+  </node>
+
+
+
+<!-- ==================================================================  -->
+
+    <!--扩展卡尔曼定位 -->
+    <node pkg="robosense_localization" name="robosense_localization" type="robosense_localization" output="screen">
+         <param name="map_path" value="$(find robosense_localization)/data/map_industry_0910_2_3d.pcd"/>
+         <param name="loc_map_path" value="$(find robosense_localization)/data/0910_2/"/>
+         <param name="odom_path" value="$(find robosense_localization)/data/odom_path_2.txt"/>
+    </node>
+    
+    <node pkg="sensors"  name="visualization_GPS"  type="visualization_GPS">
+    </node>
+    
+
+
+
+<!-- ==================================================================  -->
+    
+ <group if="$(arg rviz)">
+     <arg name="gui" default="true" />
+     <param name="use_gui" value="$(arg gui)"/>
+     <param name="robot_description" textfile="$(find robosense_localization)/model/default.urdf" />
+     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+     <node pkg="rviz" type="rviz" name="rviz" respawn="true" args="-d $(find robosense_localization)/cfg/show_field_test.rviz"/>
+<!--     <node pkg="rostopic" type="rostopic" name="fake_gps_fix" args="pub /fake_gps/fix sensor_msgs/NavSatFix - -latch - -file=$(find rviz_satellite)/launch/demo.gps" output="screen"/>-->
+    <!--  <node pkg="rviz" type="rviz" name="rviz" respawn="true" args="-d $(find rviz_satellite)/launch/demo.rviz"/>  -->
+   </group>
+
+
+
+</launch>
+

@@ -1,0 +1,42 @@
+# backup files
+*.bak
+*~
+*.orig
+*.autosave
+
+# qtcreator
+/*.config
+/*.creator
+/*.files
+/*.includes
+/*.user
+/*.creator.user.*
+
+# eclipse
+.metadata/
+/RemoteSystemsTempFiles/
+
+# generated files
+*.pyc
+
+# ROS specific folders
+build
+devel
+install
+src/robosense_localization/data/path_records/
+/logs
+.catkin_tools
+.catkin_workspace
+.idea
+# cscope
+cscope*out
+#CMakeLists.txt
+cmake-build-debug/
+
+*.swp
+*.bag
+
+# doxygen auto-generated files
+doxyerrors.log
+
+*.workspace

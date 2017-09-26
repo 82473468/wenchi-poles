@@ -1,0 +1,30 @@
+<launch>
+
+
+    <!-- Rviz -->
+    <arg name="rviz" default="true" />
+
+    <!--解析点云数据-->
+     <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+        <param name="curves_path" value="/data/LM254/curves.csv" />
+        <param name="angle_path" value="/data/LM254/angle.csv" />
+        <param name="channel_path" value="/data/LM254/ChannelNum.csv" />
+      </node>
+
+   <node pkg="robosense_localization" name="robosense_localization" type="robosense_localization" output="screen">
+        <param name="map_path" value="$(find robosense_localization)/data/0925.vtk"/>
+   </node>
+
+    <!--  <node pkg="sensors" name="visualization_GPS" type="visualization_GPS" />-->
+
+   <group if="$(arg rviz)">
+     <arg name="gui" default="true" />
+     <param name="use_gui" value="$(arg gui)"/>
+     <param name="robot_description" textfile="$(find robosense_localization)/model/default.urdf" />
+     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+     <node pkg="rviz" type="rviz" name="rviz" respawn="true" args="-d $(find robosense_localization)/cfg/demo.rviz"/>
+<!--     <node pkg="rostopic" type="rostopic" name="fake_gps_fix" args="pub /fake_gps/fix sensor_msgs/NavSatFix - -latch - -file=$(find rviz_satellite)/launch/demo.gps" output="screen"/>-->
+   </group>
+
+</launch>
+

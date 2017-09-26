@@ -1,0 +1,16 @@
+Header header
+string rmc_1
+string utc_time_2
+string status_3
+float32 latitude_4
+string N_5
+float32 longitude_6
+string E_7
+float32 spd_8
+float32 cog_9
+string utc_day_10
+float32 mv_11
+string mvE_12
+string mode_13
+string cs_14
+string initdata_0

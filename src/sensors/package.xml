@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<package>
+  <name>sensors</name>
+  <version>0.0.0</version>
+  <description>The wheelspeed package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="guoleiming@todo.todo">guoleiming</maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+  <!--   <test_depend>gtest</test_depend> -->
+
+  <build_depend>catkin</build_depend>
+  <build_depend>angles</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>pcl_conversions</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>roslaunch</build_depend>
+  <build_depend>rostest</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>rslidar_input</build_depend>
+  <build_depend>pcl_conversions</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+  <build_depend>genmsg</build_depend>
+  <build_depend>diagnostic_updater</build_depend>
+  <build_depend>serial</build_depend>
+
+  <run_depend>serial</run_depend>
+  <run_depend>angles</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>pluginlib</run_depend>
+  <run_depend>python-yaml</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>roslib</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>yaml-cpp</run_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>pcl_conversions</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>libpcl-all</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>catkin</run_depend>
+  <run_depend>genmsg</run_depend>
+  <run_depend>diagnostic_updater</run_depend>
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+</package>

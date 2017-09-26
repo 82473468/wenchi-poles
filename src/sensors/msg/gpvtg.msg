@@ -1,0 +1,12 @@
+Header header
+string vtg_1
+float32  cogt_2
+string T_3
+float32 cogm_4
+string M_5
+float32 sog_6
+string N_7
+float32 kph_8
+string K_9
+string mode_10
+string cs_11

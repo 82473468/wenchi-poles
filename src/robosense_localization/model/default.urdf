@@ -1,0 +1,20 @@
+    <?xml version="1.0"?>
+    <robot name="car">
+      <link name="base_link2">
+        <visual name="base_visual">
+
+          <origin xyz="0 0 0" rpy="0.0 0 -1.57" />
+          <geometry>
+            <mesh filename="package://robosense_localization/model/blue_open.dae" scale="1 1 1"/>
+          </geometry>
+
+
+     <!--     <origin xyz="0 0 0" rpy="1.57 0 -1.57" />
+          <geometry>
+            <mesh filename="package://robosense_localization/model/CAR_original.dae" scale="1 1 1"/>
+          </geometry>  -->
+
+
+        </visual>
+      </link>
+    </robot>

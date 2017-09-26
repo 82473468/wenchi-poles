@@ -1,0 +1,69 @@
+<launch>
+
+  <!--rviz -->
+  <node pkg="rviz" name="rviz" type="rviz" args="-d $(find sensors)/cfg/sensors.rviz"/>
+
+
+
+<!-- ==================================================================  -->
+  <!-- rslidar raw packets node -->
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/-->
+    <!--param name="device_ip" value="192.168.1.200"/-->
+    <!-- Set the Lidar data port on the PC side, default is 6699 -->
+    <param name="port" value="6699"/>
+  </node>
+  
+  <!--  rslidar pointcloud parse node -->
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="curves_path" value="/data/LM254/curves.csv"/>
+    <param name="angle_path" value="/data/LM254/angle.csv"/>
+    <param name="channel_path" value="/data/LM254/ChannelNum.csv"/>
+  </node>
+  
+
+
+<!-- ==================================================================  -->
+  <!-- gps data record node -->
+  <node name="gps" pkg="sensors" type="findm"   >
+  <param name="port" value="/dev/ttyUSBGps" />
+  <param name="baud" value="115200" />
+  <param name="appkey" value="510328" />
+  <param name="appSecret" value="a9a55c74fa8797e5ba9ca482d83311b9a6341ab99996050345ad43a480bfded9" />
+  <param name="deviceType"   value="GPS" />
+</node>
+
+
+<!-- nav440 imu data record node -->
+<node  name="nav440" pkg="sensors" type="nav440"  >
+  <param name="port" value="/dev/ttyUSBNav" />
+  <param name="baud" value="38400" />
+</node>
+
+<!-- obd data record -->
+<!--node  name="canbus" pkg="sensors" type="canbus"  -->
+  <!--param name="port" value="/dev/ttyUSBEncoder" /-->
+  <!--param name="baud" value="38400" /-->
+<!--/node-->
+
+<!-- wheel encoder data record -->
+<node  name="encoder" pkg="sensors" type="encoder"  >
+  <param name="port" value="/dev/ttyUSBEncoder" />
+  <param name="baud" value="115200" />
+</node>
+
+
+
+<node pkg="sensors"  name="visualization_GPS"  type="visualization_GPS"  />
+
+
+
+<!-- ==================================================================  -->
+  
+  <!-- rosbag record sensor data -->
+  <!--node name="record" pkg="rosbag" type="record" output="screen" args="-O /home/sti/20170704.bag /nav440/nav440 /gps/FindM /canbus/canbus /rslidar_node/rslidar_packets" /-->
+  <node pkg="rosbag" type="record" name="rosbag_record_standard_data" respawn="true" output="screen"
+  args="-o $(find sensors)/rosbags/industrial  /nav440/nav440 /gps/fix /encoder/encoders /rslidar_packets" />
+
+
+</launch>
